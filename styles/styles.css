@@ -57,6 +57,11 @@ header {
   overflow: hidden;
 }
 
+/* ADD THIS LINE */
+.active {
+    position: relative; 
+}
+
 section {
   min-height: 100vh;
   width: 100%;
@@ -67,47 +72,32 @@ section {
 }
 
 .section {
-  transform: translateY(-100%) scale(0);
-  transition: all 0.4s ease-in-out;
-  background-color: var(--color-primary);
+    /* Sets the hidden, starting position for the animation */
+    transform: translateY(-100%) scale(0.8);
+    transition: all 0.7s ease-in-out;
+    opacity: 0;
+    /* Allows sections to stack on top of each other */
+    position: absolute; 
+    left: 0;
+    top: 0;
+    width: 100%;
+    /* Hide scrollbars/content when inactive */
+    visibility: hidden; 
+    min-height: 100vh; /* Keep the height */
+    padding: 3rem 18rem; /* Keep original padding */
 }
 
-.sec1 {
-  display: none;
-  transform: translateY(0) scale(1);
-}
+/* REMOVE all separate .sec1, .sec2, .sec3 blocks (lines 87-100) entirely! */
+/* The JS controls visibility now. */
 
-.sec2 {
-  display: none;
-  transform: translateY(0) scale(1);
-}
 
-.sec3 {
-  display: none;
-  transform: translateY(0) scale(1);
-}
-
-.sec4 {
-  display: none;
-  transform: translateY(0) scale(1);
-}
-
-.sec5 {
-  display: none;
-  transform: translateY(0) scale(1);
-}
-
-.active {
-  display: block;
-  animation: scaleAnim 1s ease-in-out;
-}
-@keyframes scaleAnim {
-  0% {
-    transform: translateY(-100%) scaleY(0);
-  }
-  100% {
-    transform: translateY(0) scaleY(1);
-  }
+/* CORRECTED: The Visible (Active) State */
+.section.active {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+    visibility: visible;
+    z-index: 10; /* Ensures the active section is always on top */
+    /* Remove the animation block from the CSS; JS handles the class */
 }
 
 .controlls {
